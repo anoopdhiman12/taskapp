@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ViewController: UIViewController {
     
@@ -19,10 +20,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPwd: UITextField!
     
-    //Action
     
+    //Segment Control Action
     @IBAction func segmentAction(sender: AnyObject) {
-        
         if(segmentFlag){
             btnLogin.setTitle("Login", forState: btnLogin.state)
             segmentFlag = false            
@@ -34,65 +34,49 @@ class ViewController: UIViewController {
         }
     }
     
+    //Signup/ Login Acton
     @IBAction func loginAction(sender: AnyObject) {
-        
         let currentTitle = btnLogin.currentTitle
-        
         if(currentTitle == "Signup"){
             //do signup
-            
             if(checkValidEmail(txtEmail.text!)){
                 //do firebase signup                
             }
-            else
-            {
+            else{
                 showAlert("Alert", message: "Invalid Email", closetitle: "Try again")
             }
-            
-            
-            
         }
         else if(currentTitle == "Login"){
             //do login
         }
         else{
             showAlert("Alert !!!", message: "Somthing went wrong", closetitle: "Try again leter")
-            
         }
-        
-        
-        
-        
-        
     }
+    
         override func viewDidLoad() {
         super.viewDidLoad()
         btnLogin.layer.cornerRadius = 5
             
         //view.backgroundColor:UIColor(patternImage: UIImage[imageNamed:"@wallpaper.png"])
-        
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "wallpaper.jpg")!)
-        // Do any additional setup after loading the view, typically from a nib.
-            
-    }
+         }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
     //check valid email
     func checkValidEmail(email:String) -> Bool {
         return email.rangeOfString("^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", options: .RegularExpressionSearch) != nil
     }
     
-    
     //Show Alert Message
     func showAlert (title:String,message:String, closetitle:String)  {
         let alertController = UIAlertController(title: title, message:
             message, preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: closetitle, style: UIAlertActionStyle.Default,handler: nil))
-        
+        alertController.addAction(UIAlertAction(title: closetitle, style: UIAlertActionStyle.Default,handler: nil))   
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
