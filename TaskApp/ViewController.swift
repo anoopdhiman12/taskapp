@@ -10,26 +10,30 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //local variable
+    var segmentFlag: Bool = false
     
     //Outlet
-    
     @IBOutlet weak var btnSegment: UISegmentedControl!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPwd: UITextField!
     
-    
     //Action
-    @IBOutlet weak var segmentAction: UISegmentedControl!
-    @IBOutlet weak var LoginAction: UIButton!
-
-    override func viewDidLoad() {
+    
+    
+    @IBAction func loginAction(sender: AnyObject) {
+    }
+        override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         //view.backgroundColor:UIColor(patternImage: UIImage[imageNamed:"@wallpaper.png"])
         
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "wallpaper.jpg")!)
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
