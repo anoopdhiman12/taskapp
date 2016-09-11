@@ -21,6 +21,22 @@ class ViewController: UIViewController {
     
     //Action
     
+    @IBAction func segmentAction(sender: AnyObject) {
+        
+        if(segmentFlag){
+            btnLogin.setTitle("Login", forState: btnLogin.state)
+            segmentFlag = false
+        }
+        else{
+            btnLogin.setTitle("Signup", forState: btnLogin.state)
+            segmentFlag = true
+        }
+        
+        
+        
+        
+    }
+    
     
     @IBAction func loginAction(sender: AnyObject) {
     }

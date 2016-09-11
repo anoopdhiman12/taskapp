@@ -28,7 +28,7 @@
                                     <segment title="Signup"/>
                                 </segments>
                                 <connections>
-                                    <action selector="segmentAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="aFE-te-NwJ"/>
+                                    <action selector="segmentAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="maU-kB-ukR"/>
                                 </connections>
                             </segmentedControl>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jPL-Je-wYY">
