@@ -60,7 +60,7 @@ class ViewController: UIViewController {
             }
         }
         else if(currentTitle == "Login"){
-            
+            try! FIRAuth.auth()?.signOut()
             guard let email = txtEmail.text, pwd = txtPwd.text else {
                 showAlert("alert", message: "Enter valid details", closetitle: "Try again")
                 return
@@ -71,19 +71,24 @@ class ViewController: UIViewController {
             }
             
             FIRAuth.auth()?.signInWithEmail(email, password: pwd, completion: { ( let user,let error) in
-                if let cUser = FIRAuth.auth()?.currentUser{
-                    let uid = cUser.uid
-                    let uDefaults = NSUserDefaults.standardUserDefaults()
-                    uDefaults.setObject(uid, forKey: "uid")
-                    uDefaults.synchronize()
-                    
-                    self.showAlert("Alert", message: "Login Succeed", closetitle: "succeed")
-                    
-                    
-                    
-                    }
-                
             })
+            if let cUser = FIRAuth.auth()?.currentUser{
+                let uid = cUser.uid
+                let uDefaults = NSUserDefaults.standardUserDefaults()
+                uDefaults.setObject(uid, forKey: "uid")
+                uDefaults.synchronize()
+                self.showAlert("Alert", message: "Login Succeed", closetitle: "succeed")
+                
+                
+                
+            }
+            
+            else{
+                self.txtEmail.text = ""
+                self.txtPwd.text = ""
+                self.showAlert("Alert", message: "Invalid Cridentials", closetitle: "Try again")
+                
+            }
             
             
             
