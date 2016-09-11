@@ -40,7 +40,6 @@ class ViewController: UIViewController {
             //do signup
             if(checkValidEmail(txtEmail.text!) && (txtPwd.text != "")){
                 //do firebase signup
-                
                 FIRAuth.auth()?.createUserWithEmail((txtEmail.text)!, password: (txtPwd.text)!, completion: { (let user, let error) in
                     if let cUser = FIRAuth.auth()?.currentUser{
                         let uid = cUser.uid
@@ -61,13 +60,39 @@ class ViewController: UIViewController {
             }
         }
         else if(currentTitle == "Login"){
+            
+            guard let email = txtEmail.text, pwd = txtPwd.text else {
+                showAlert("alert", message: "Enter valid details", closetitle: "Try again")
+                return
+            }
+            if(!checkValidEmail(email)){
+                showAlert("alert", message: "Enter valid details", closetitle: "Try again")
+                return
+            }
+            
+            FIRAuth.auth()?.signInWithEmail(email, password: pwd, completion: { ( let user,let error) in
+                if let cUser = FIRAuth.auth()?.currentUser{
+                    let uid = cUser.uid
+                    let uDefaults = NSUserDefaults.standardUserDefaults()
+                    uDefaults.setObject(uid, forKey: "uid")
+                    uDefaults.synchronize()
+                    
+                    self.showAlert("Alert", message: "Login Succeed", closetitle: "succeed")
+                    
+                    
+                    
+                    }
+                
+            })
+            
+            
+            
             //do login
         }
         else{
             showAlert("Alert !!!", message: "Somthing went wrong", closetitle: "Try again leter")
         }
     }
-    
         override func viewDidLoad() {
         super.viewDidLoad()
         btnLogin.layer.cornerRadius = 5
