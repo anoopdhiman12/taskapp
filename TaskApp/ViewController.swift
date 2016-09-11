@@ -31,25 +31,18 @@ class ViewController: UIViewController {
             btnLogin.setTitle("Signup", forState: btnLogin.state)
             segmentFlag = true
         }
-        
-        
-        
-        
     }
-    
     
     @IBAction func loginAction(sender: AnyObject) {
     }
         override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+            
         //view.backgroundColor:UIColor(patternImage: UIImage[imageNamed:"@wallpaper.png"])
         
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "wallpaper.jpg")!)
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
+            
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,6 +50,4 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
 }
-
