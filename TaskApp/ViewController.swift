@@ -35,6 +35,7 @@ class ViewController: UIViewController {
     }    
     //Signup/ Login Acton
     @IBAction func loginAction(sender: AnyObject) {
+        
         let currentTitle = btnLogin.currentTitle
         if(currentTitle == "Signup"){
             //do signup
@@ -60,7 +61,7 @@ class ViewController: UIViewController {
             }
         }
         else if(currentTitle == "Login"){
-            try! FIRAuth.auth()?.signOut()
+            //try! FIRAuth.auth()?.signOut()
             guard let email = txtEmail.text, pwd = txtPwd.text else {
                 showAlert("alert", message: "Enter valid details", closetitle: "Try again")
                 return
@@ -71,7 +72,21 @@ class ViewController: UIViewController {
             }
             
             FIRAuth.auth()?.signInWithEmail(email, password: pwd, completion: { ( let user,let error) in
+                
+                let uid = user?.uid
+                print(uid)
+                
+                if let userid = uid{
+                    NSUserDefaults.standardUserDefaults().setValue(userid, forKey: "uid")
+                    
+                }
+                
+                
+                
+                
+                
             })
+            
             if let cUser = FIRAuth.auth()?.currentUser{
                 let uid = cUser.uid
                 let uDefaults = NSUserDefaults.standardUserDefaults()
@@ -79,16 +94,15 @@ class ViewController: UIViewController {
                 uDefaults.synchronize()
                 self.showAlert("Alert", message: "Login Succeed", closetitle: "succeed")
                 
-                
-                
             }
-            
+                
             else{
                 self.txtEmail.text = ""
                 self.txtPwd.text = ""
                 self.showAlert("Alert", message: "Invalid Cridentials", closetitle: "Try again")
                 
             }
+            
             
             
             
@@ -101,14 +115,14 @@ class ViewController: UIViewController {
         override func viewDidLoad() {
         super.viewDidLoad()
         btnLogin.layer.cornerRadius = 5
-        FIRApp.configure()
+        //FIRApp.configure()
+           // try! FIRAuth.auth()?.signOut()
             
         //self.view.backgroundColor = UIColor(patternImage: <#T##UIImage#>(named:"wallpaper.jpg"))
           
             self.view.backgroundColor = UIColor(patternImage: UIImage(named: "wallpaper.jpg")!)
             
             
-       
          }
 
     override func didReceiveMemoryWarning() {
@@ -124,7 +138,7 @@ class ViewController: UIViewController {
     //Show Alert Message
     func showAlert (title:String,message:String, closetitle:String)  {
         let alertController = UIAlertController(title: title, message:
-            message, preferredStyle: UIAlertControllerStyle.Alert)
+            message, preferredStyle: UIAlertControllerStyle.ActionSheet)
         alertController.addAction(UIAlertAction(title: closetitle, style: UIAlertActionStyle.Default,handler: nil))   
         self.presentViewController(alertController, animated: true, completion: nil)
     }
