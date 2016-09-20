@@ -22,36 +22,36 @@ class ViewController: UIViewController {
     @IBOutlet weak var txtPwd: UITextField!
     
     //Segment Control Action
-    @IBAction func segmentAction(sender: AnyObject) {
+    @IBAction func segmentAction(_ sender: AnyObject) {
         if(segmentFlag){
-            btnLogin.setTitle("Login", forState: btnLogin.state)
+            btnLogin.setTitle("Login", for: btnLogin.state)
             segmentFlag = false            
         }
         else{
-            btnLogin.setTitle("Signup", forState: btnLogin.state)
+            btnLogin.setTitle("Signup", for: btnLogin.state)
             segmentFlag = true
-            txtEmail.focused
+            //txtEmail.isFocused
         }
     }    
     //Signup/ Login Acton
-    @IBAction func loginAction(sender: AnyObject) {
+    @IBAction func loginAction(_ sender: AnyObject) {
         
         let currentTitle = btnLogin.currentTitle
         if(currentTitle == "Signup"){
             //do signup
             if(checkValidEmail(txtEmail.text!) && (txtPwd.text != "")){
                 //do firebase signup
-                FIRAuth.auth()?.createUserWithEmail((txtEmail.text)!, password: (txtPwd.text)!, completion: { (let user, let error) in
+                FIRAuth.auth()?.createUser(withEmail: (txtEmail.text)!, password: (txtPwd.text)!, completion: { (user, error) in
                     if let cUser = FIRAuth.auth()?.currentUser{
                         let uid = cUser.uid
-                        let uDefaults = NSUserDefaults.standardUserDefaults()
-                        uDefaults.setObject(uid, forKey: "uid")
+                        let uDefaults = UserDefaults.standard
+                        uDefaults.set(uid, forKey: "uid")
                         uDefaults.synchronize()
                         self.showAlert("Success", message: "Registered Successfully", closetitle: "Click to Login")
                         self.txtEmail.text = ""
                         self.txtPwd.text = ""
                         self.btnSegment.selectedSegmentIndex = 0
-                        self.btnLogin.setTitle("Login", forState: self.btnLogin.state)
+                        self.btnLogin.setTitle("Login", for: self.btnLogin.state)
                     }
                     //print(user)
                 })
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         }
         else if(currentTitle == "Login"){
             //try! FIRAuth.auth()?.signOut()
-            guard let email = txtEmail.text, pwd = txtPwd.text else {
+            guard let email = txtEmail.text, let pwd = txtPwd.text else {
                 showAlert("alert", message: "Enter valid details", closetitle: "Try again")
                 return
             }
@@ -71,14 +71,17 @@ class ViewController: UIViewController {
                 return
             }
             
-            FIRAuth.auth()?.signInWithEmail(email, password: pwd, completion: { ( let user,let error) in
+            FIRAuth.auth()?.signIn(withEmail: email, password: pwd, completion: { ( user,error) in
                 
                 let uid = user?.uid
                 print(uid)
                 
                 if let userid = uid{
-                    NSUserDefaults.standardUserDefaults().setValue(userid, forKey: "uid")
-                    
+                    UserDefaults.standard.setValue(userid, forKey: "uid")
+                    //let next = self.storyboard?.instantiateViewController(withIdentifier: "taskUI") as! ViewController
+                    let next1 = self.storyboard?.instantiateViewController(withIdentifier: "taskUI") as! TaskViewController
+                    self.present(next1, animated: true, completion: nil)
+                    //self.presentingViewController(next1,animated: true, completion: nil)
                 }
                 
                 
@@ -89,8 +92,8 @@ class ViewController: UIViewController {
             
             if let cUser = FIRAuth.auth()?.currentUser{
                 let uid = cUser.uid
-                let uDefaults = NSUserDefaults.standardUserDefaults()
-                uDefaults.setObject(uid, forKey: "uid")
+                let uDefaults = UserDefaults.standard
+                uDefaults.set(uid, forKey: "uid")
                 uDefaults.synchronize()
                 self.showAlert("Alert", message: "Login Succeed", closetitle: "succeed")
                 
@@ -100,12 +103,8 @@ class ViewController: UIViewController {
                 self.txtEmail.text = ""
                 self.txtPwd.text = ""
                 self.showAlert("Alert", message: "Invalid Cridentials", closetitle: "Try again")
-                
+   
             }
-            
-            
-            
-            
             //do login
         }
         else{
@@ -131,16 +130,16 @@ class ViewController: UIViewController {
     }
     
     //check valid email
-    func checkValidEmail(email:String) -> Bool {
-        return email.rangeOfString("^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", options: .RegularExpressionSearch) != nil
+    func checkValidEmail(_ email:String) -> Bool {
+        return email.range(of: "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", options: .regularExpression) != nil
     }
     
     //Show Alert Message
-    func showAlert (title:String,message:String, closetitle:String)  {
+    func showAlert (_ title:String,message:String, closetitle:String)  {
         let alertController = UIAlertController(title: title, message:
-            message, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        alertController.addAction(UIAlertAction(title: closetitle, style: UIAlertActionStyle.Default,handler: nil))   
-        self.presentViewController(alertController, animated: true, completion: nil)
+            message, preferredStyle: UIAlertControllerStyle.actionSheet)
+        alertController.addAction(UIAlertAction(title: closetitle, style: UIAlertActionStyle.default,handler: nil))   
+        self.present(alertController, animated: true, completion: nil)
     }
 
 }
