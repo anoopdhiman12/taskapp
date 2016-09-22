@@ -61,7 +61,8 @@ class ViewController: UIViewController {
             }
         }
         else if(currentTitle == "Login"){
-            //try! FIRAuth.auth()?.signOut()
+            
+            
             guard let email = txtEmail.text, let pwd = txtPwd.text else {
                 showAlert("alert", message: "Enter valid details", closetitle: "Try again")
                 return
@@ -90,21 +91,23 @@ class ViewController: UIViewController {
                 
             })
             
-            if let cUser = FIRAuth.auth()?.currentUser{
-                let uid = cUser.uid
-                let uDefaults = UserDefaults.standard
-                uDefaults.set(uid, forKey: "uid")
-                uDefaults.synchronize()
-                self.showAlert("Alert", message: "Login Succeed", closetitle: "succeed")
-                
-            }
-                
-            else{
-                self.txtEmail.text = ""
-                self.txtPwd.text = ""
-                self.showAlert("Alert", message: "Invalid Cridentials", closetitle: "Try again")
-   
-            }
+//            if let cUser = FIRAuth.auth()?.currentUser{
+//                let uid = cUser.uid
+//                let uDefaults = UserDefaults.standard
+//                uDefaults.set(uid, forKey: "uid")
+//                uDefaults.synchronize()
+//                self.showAlert("Alert", message: "Login Succeed", closetitle: "succeed")
+//                let next1 = self.storyboard?.instantiateViewController(withIdentifier: "taskUI") as! TaskViewController
+//                self.present(next1, animated: true, completion: nil)
+//                
+//            }
+//                
+//            else{
+//                self.txtEmail.text = ""
+//                self.txtPwd.text = ""
+//                self.showAlert("Alert", message: "Invalid Cridentials", closetitle: "Try again")
+//   
+//            }
             //do login
         }
         else{
