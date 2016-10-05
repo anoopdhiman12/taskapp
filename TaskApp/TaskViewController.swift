@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class TaskViewController: UIViewController {
 
@@ -20,6 +21,23 @@ class TaskViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func logoutMe(_ sender: AnyObject) {
+     try! FIRAuth.auth()!.signOut()
+        if let storyyboard = self.storyboard {
+        
+            
+            let next1 = storyyboard.instantiateViewController(withIdentifier: "loginUI") as! ViewController
+            //self.present(next1, animated: true, completion: nil)
+            //self.presentingViewController(next1,animated: true, completion: nil)
+            //self.present(next1,animated: true, completion: nil)
+            
+            self.present(next1,animated:true, completion: nil)
+        
+        }
+        
+        
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

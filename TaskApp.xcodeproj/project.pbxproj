@@ -15,6 +15,7 @@
 		D1A778DD1D84E68500724AC6 /* wallpaper.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1A778DC1D84E68500724AC6 /* wallpaper.xcassets */; };
 		D1A778E01D84E68500724AC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A778DE1D84E68500724AC6 /* LaunchScreen.storyboard */; };
 		D1A778E81D852C0300724AC6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1A778E71D852C0300724AC6 /* GoogleService-Info.plist */; };
+		D1DF0E0D1DA562BA00AE358D /* addTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DF0E0C1DA562BA00AE358D /* addTaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		D1A778DF1D84E68500724AC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1A778E11D84E68500724AC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1A778E71D852C0300724AC6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D1DF0E0C1DA562BA00AE358D /* addTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				D1A778DE1D84E68500724AC6 /* LaunchScreen.storyboard */,
 				D1A778E11D84E68500724AC6 /* Info.plist */,
 				D1A6319E1D9068C40076A25F /* TaskViewController.swift */,
+				D1DF0E0C1DA562BA00AE358D /* addTaskViewController.swift */,
 			);
 			path = TaskApp;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1A778D81D84E68500724AC6 /* ViewController.swift in Sources */,
+				D1DF0E0D1DA562BA00AE358D /* addTaskViewController.swift in Sources */,
 				D1A778D61D84E68500724AC6 /* AppDelegate.swift in Sources */,
 				D1A6319F1D9068C40076A25F /* TaskViewController.swift in Sources */,
 			);

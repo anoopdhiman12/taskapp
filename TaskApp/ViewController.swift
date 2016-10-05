@@ -81,14 +81,15 @@ class ViewController: UIViewController {
                     UserDefaults.standard.setValue(userid, forKey: "uid")
                     //let next = self.storyboard?.instantiateViewController(withIdentifier: "taskUI") as! ViewController
                     let next1 = self.storyboard?.instantiateViewController(withIdentifier: "taskUI") as! TaskViewController
-                    self.present(next1, animated: true, completion: nil)
+                    //self.present(next1, animated: true, completion: nil)
                     //self.presentingViewController(next1,animated: true, completion: nil)
+                    //self.present(next1,animated: true, completion: nil)
+                    
+                    self.present(next1,animated:true, completion: nil)
+                    
+                    //self.showAlert("tt", message: "msg", closetitle: "ctitle")
+                    
                 }
-                
-                
-                
-                
-                
             })
             
 //            if let cUser = FIRAuth.auth()?.currentUser{
