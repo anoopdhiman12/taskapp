@@ -33,9 +33,6 @@ class addTaskViewController: UIViewController {
             let status:String = "0"
             
             ref.child("Users").child(uid).setValue(["task": task,"date": date,"status":status])
-            
-            
-            
         }
         
         else
