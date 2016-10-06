@@ -23,10 +23,8 @@ class TaskViewController: UIViewController {
 
     @IBAction func logoutMe(_ sender: AnyObject) {
      try! FIRAuth.auth()!.signOut()
-        if let storyyboard = self.storyboard {
-        
-            
-            let next1 = storyyboard.instantiateViewController(withIdentifier: "loginUI") as! ViewController
+        if self.storyboard != nil {                    
+            let next1 = storyboard?.instantiateViewController(withIdentifier: "loginUi") as!  ViewController
             //self.present(next1, animated: true, completion: nil)
             //self.presentingViewController(next1,animated: true, completion: nil)
             //self.present(next1,animated: true, completion: nil)

@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class addTaskViewController: UIViewController {
+    
+    var ref: FIRDatabaseReference!
+    
 
     @IBAction func closeMe(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
@@ -16,9 +21,28 @@ class addTaskViewController: UIViewController {
     }
     
     
+    @IBOutlet weak var addTask: UIButton!
+    @IBOutlet weak var taskText: UITextField!
     @IBAction func saveTask(_ sender: AnyObject) {
         
+        ref = FIRDatabase.database().reference()
+        if let cUser = FIRAuth.auth()?.currentUser{
+            let uid:String = cUser.uid
+            let task:String = taskText.text!
+            let date:String = "4/4/2016"
+            let status:String = "0"
+            
+            ref.child("Users").child(uid).setValue(["task": task,"date": date,"status":status])
+            
+            
+            
+        }
         
+        else
+        
+        {
+            
+        }
         
     }
     
@@ -31,9 +55,17 @@ class addTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+            
+            
+            
+        }
 
-        // Do any additional setup after loading the view.
-    }
+        
+        
+        
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

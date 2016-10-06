@@ -80,7 +80,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="209" y="245"/>
+            <point key="canvasLocation" x="445" y="244"/>
         </scene>
         <!--Task View Controller-->
         <scene sceneID="gfc-iA-uaH">
@@ -98,10 +98,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="1yw-hG-wfy">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1yw-hG-wfy" id="Bhv-JI-LnQ">
-                                            <frame key="frameInset" width="375" height="44"/>
+                                            <frame key="frameInset" width="1000" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -174,9 +174,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xC-6q-mBB">
-                                <frame key="frameInset" minX="125" minY="222" width="124" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xC-6q-mBB">
                                 <state key="normal" title="Add Task"/>
                                 <connections>
                                     <action selector="saveTask:" destination="kze-yY-lEQ" eventType="touchUpInside" id="W0B-KR-lz3"/>
@@ -185,14 +183,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="9xC-6q-mBB" firstAttribute="width" secondItem="G8w-Zm-Si8" secondAttribute="width" id="0Yr-If-mK0"/>
                             <constraint firstItem="D5O-Pu-Blf" firstAttribute="top" secondItem="mXS-pT-eFS" secondAttribute="bottom" constant="139" id="9P3-En-LFW"/>
                             <constraint firstItem="D5O-Pu-Blf" firstAttribute="centerX" secondItem="G8w-Zm-Si8" secondAttribute="centerX" id="Fa8-73-0QD"/>
+                            <constraint firstItem="9xC-6q-mBB" firstAttribute="top" secondItem="D5O-Pu-Blf" secondAttribute="bottom" constant="33" id="e1I-bz-w7K"/>
+                            <constraint firstItem="9xC-6q-mBB" firstAttribute="centerX" secondItem="G8w-Zm-Si8" secondAttribute="centerX" id="t1k-C7-0ZY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addTask" destination="9xC-6q-mBB" id="F89-v7-2Cv"/>
+                        <outlet property="taskText" destination="D5O-Pu-Blf" id="y9a-tt-8Bh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SkY-Ph-7Ok" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1520.8" y="234.33283358320841"/>
+            <point key="canvasLocation" x="1532" y="244"/>
         </scene>
     </scenes>
 </document>
