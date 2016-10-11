@@ -32,7 +32,14 @@ class addTaskViewController: UIViewController {
             let date:String = "4/4/2016"
             let status:String = "0"
             
-            ref.child("Users").child(uid).setValue(["task": task,"date": date,"status":status])
+            //ref.child("Users").child(uid).setValue(["task": task,"date": date,"status":status])
+            //ref.child(byAppendingPath: "Users").child(uid).setvalue(["task": task,"date": date,"status":status])
+            
+            ref.child("Task").child(uid).childByAutoId().setValue(["task": task,"date": date,"status":status])
+            
+            
+            
+            
         }
         
         else
