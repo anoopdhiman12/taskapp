@@ -21,7 +21,7 @@ struct task{
 class TaskViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
     var tasks = [task]()
-    var getdata:[AnyObject] = []
+    var getdata:[AnyObject ] = []
     var databaseref: FIRDatabaseReference!
     var newItems:[String:AnyObject] = [:]
     var dictionary:[String:AnyObject] = [:]
@@ -72,7 +72,7 @@ class TaskViewController: UIViewController,UITableViewDataSource, UITableViewDel
         let itaraay = getdata[indexPath.item]
         
         print("<<")
-        print(itaraay.value(forKeyPath: "task"))
+        print(itaraay)
         
         
         cell.textLabel?.text = "one"
