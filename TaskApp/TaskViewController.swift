@@ -22,9 +22,6 @@ class TaskViewController: UIViewController,UITableViewDataSource, UITableViewDel
     
     var tasks = [task]()
     var getdata:[AnyObject] = []
-    
-    
-    
     var databaseref: FIRDatabaseReference!
     var newItems:[String:AnyObject] = [:]
     var dictionary:[String:AnyObject] = [:]
@@ -43,7 +40,6 @@ class TaskViewController: UIViewController,UITableViewDataSource, UITableViewDel
                     //print(tt)
                     //print(item)
                     self.getdata.append(item as AnyObject)
-                    
                     //let task = (item as AnyObject).value(value(forKey: "task"))
                    // let tt =  snapshot.children.value(forKey: "task")
                     //print(tt)
@@ -53,6 +49,7 @@ class TaskViewController: UIViewController,UITableViewDataSource, UITableViewDel
                 print("--")
                 print(self.getdata)
                 print(self.getdata.count)
+                self.taskTable.reloadData()
                     
             })
     }
@@ -72,12 +69,14 @@ class TaskViewController: UIViewController,UITableViewDataSource, UITableViewDel
         
         let cell = taskTable.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
         
-        //let itaraay = getdata[indexPath.item]
+        let itaraay = getdata[indexPath.item]
+        
+        print("<<")
+        print(itaraay.value(forKeyPath: "task"))
+        
+        
         cell.textLabel?.text = "one"
-        //cell.textLabel?.text = itaraay.value(forKey: "task") as! String
-        
-        
-        
+        //cell.textLabel?.text = (itaraay.value(forKey: "task") as! String)
         return cell
     }
     
