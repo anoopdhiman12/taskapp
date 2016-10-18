@@ -11,55 +11,52 @@ import FirebaseAuth
 import FirebaseDatabase
 
 
-struct task{
-    let date: String!
-    let status: String!
-    let task: String!
-}
+//struct task{
+//    let date: String!
+//    let status: String!
+//    let task: String!
+//}
 
 
 class TaskViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
-    var tasks = [task]()
-    var getdata:[AnyObject ] = []
-    var databaseref: FIRDatabaseReference!
-    var newItems:[String:AnyObject] = [:]
-    var dictionary:[String:AnyObject] = [:]
     
+    //var chk = [String]()
+    
+//    
+//    var getdata:[AnyObject ] = []
+//    var databaseref: FIRDatabaseReference!
+//    
+    
+    var users = [user]()
+   
     @IBOutlet weak var taskTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let cUser = FIRAuth.auth()?.currentUser{
-            let uid:String = cUser.uid
-                databaseref = FIRDatabase.database().reference().child("Task").child(uid)
-                databaseref.observe(.value, with: { (snapshot) in
-                for item in snapshot.children {
-                    //print((item as AnyObject).date!)
-                    //let tt = (item as AnyObject).task
-                    //print(tt)
-                    //print(item)
-                    self.getdata.append(item as AnyObject)
-                    //let task = (item as AnyObject).value(value(forKey: "task"))
-                   // let tt =  snapshot.children.value(forKey: "task")
-                    //print(tt)
-                    //self.tasks.append(snapshot.key("task"))
-                    //self.tasks.append(item as! task)
+       fetUser()
+    }
+    func fetUser(){
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("Task").child(uid!).observe(.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String:AnyObject]{
+            //if let dictionary = FIRDataSnapshot.value as? [String: AnyObject]{
+                print(snapshot)
+                let user1 = user()
+                user1.setValuesForKeys(dictionary)
+                print(user1)
+                self.users.append(user1)
+                DispatchQueue.main.async{
+                    self.taskTable.reloadData()
                 }
-                print("--")
-                print(self.getdata)
-                print(self.getdata.count)
-                self.taskTable.reloadData()
-                    
-            })
+                
+            }
+            
+            }, withCancel: nil)
     }
-    }
-    
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return  3
-        //return dictionary.count
-        return self.getdata.count
+        return self.users.count
     }
     
     
@@ -69,14 +66,10 @@ class TaskViewController: UIViewController,UITableViewDataSource, UITableViewDel
         
         let cell = taskTable.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
         
-        let itaraay = getdata[indexPath.item]
+        let user = users[indexPath.row]
+        print(user)
+        cell.textLabel?.text = user.task
         
-        print("<<")
-        print(itaraay)
-        
-        
-        cell.textLabel?.text = "one"
-        //cell.textLabel?.text = (itaraay.value(forKey: "task") as! String)
         return cell
     }
     
