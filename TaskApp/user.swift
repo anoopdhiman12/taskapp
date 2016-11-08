@@ -8,7 +8,7 @@
 
 import UIKit
 
-class user: NSObject {
+class user: NSDictionary {
     var date:String?
     var status:String?
     var task:String?

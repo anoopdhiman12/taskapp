@@ -32,10 +32,12 @@ class addTaskViewController: UIViewController {
             let date:String = "4/4/2016"
             let status:String = "0"
             
-            //ref.child("Users").child(uid).setValue(["task": task,"date": date,"status":status])
-            //ref.child(byAppendingPath: "Users").child(uid).setvalue(["task": task,"date": date,"status":status])
             
-            ref.child("Task").child(uid).childByAutoId().setValue(["task": task,"date": date,"status":status])
+            ref.child(uid).childByAutoId().setValue(["task": task,"date": date,"status":status])
+            //ref.child(uid).childByAutoId().dictionaryWithValues(forKeys: "task": task,"date": date,"status",,:status)
+            //ref.child(uid).childByAutoId().setValue(["task": task,"date": date,"status":status])
+            //ref.childByAutoId().setValue(["task": task,"date": date,"status":status,"user":uid])
+            
             
             
             
@@ -52,8 +54,7 @@ class addTaskViewController: UIViewController {
     
     func getCurrentUser() -> String {
         return "adf"
-        
-        
+                
         
     }
     
@@ -61,17 +62,8 @@ class addTaskViewController: UIViewController {
         super.viewDidLoad()
         
         
-            
-            
-            
         }
-
-        
-        
-        
-
-
-    override func didReceiveMemoryWarning() {
+  override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
