@@ -16,7 +16,14 @@ class addTaskViewController: UIViewController {
     
 
     @IBAction func closeMe(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
+        let next1 = self.storyboard?.instantiateViewController(withIdentifier: "taskUI") as!  TaskViewController
+        //self.present(next1, animated: true, completion: nil)
+        //self.presentingViewController(next1,animated: true, completion: nil)
+        //self.present(next1,animated: true, completion: nil)
+        
+        
+        self.present(next1,animated:true, completion: nil)
         
     }
     
@@ -31,17 +38,16 @@ class addTaskViewController: UIViewController {
             let task:String = taskText.text!
             let date:String = "4/4/2016"
             let status:String = "0"
-            
-            
+        
             ref.child(uid).childByAutoId().setValue(["task": task,"date": date,"status":status])
             //ref.child(uid).childByAutoId().dictionaryWithValues(forKeys: "task": task,"date": date,"status",,:status)
             //ref.child(uid).childByAutoId().setValue(["task": task,"date": date,"status":status])
             //ref.childByAutoId().setValue(["task": task,"date": date,"status":status,"user":uid])
             
-            
-            
-            
-            
+            //self.dismiss(animated: true, completion: nil)
+            let next1 = self.storyboard?.instantiateViewController(withIdentifier: "taskUI") as!  TaskViewController                        
+            self.present(next1,animated:true, completion: nil)
+
         }
         
         else
@@ -54,7 +60,7 @@ class addTaskViewController: UIViewController {
     
     func getCurrentUser() -> String {
         return "adf"
-                
+        
         
     }
     

@@ -21,13 +21,6 @@ struct task{
 class TaskViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
     
-    //var chk = [String]()
-    
-//    
-//    var getdata:[AnyObject ] = []
-//    var databaseref: FIRDatabaseReference!
-//  
-    
     struct taskk {
         let date:String!
         let status:String!
@@ -41,6 +34,17 @@ class TaskViewController: UIViewController,UITableViewDataSource, UITableViewDel
     var dict : [[String:String]] = []
     
    
+    @IBAction func logout(_ sender: AnyObject) {
+       
+        let next1 = self.storyboard?.instantiateViewController(withIdentifier: "loginUi") as!  ViewController
+        //self.present(next1, animated: true, completion: nil)
+        //self.presentingViewController(next1,animated: true, completion: nil)
+        //self.present(next1,animated: true, completion: nil)
+        
+        self.present(next1,animated:true, completion: nil)
+        
+        
+        }
     @IBOutlet weak var taskTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,8 +85,8 @@ class TaskViewController: UIViewController,UITableViewDataSource, UITableViewDel
     
    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("<><>Users")
-        print(self.dict.count)
+        //print("<><>Users")
+        //print(self.dict.count)
         return self.dict.count
     }
     
